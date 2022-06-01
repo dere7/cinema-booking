@@ -4,9 +4,10 @@ import javax.swing.*;
 
 public class MoviesList  extends JPanel{
     public MoviesList(DB db) {
-        setBackground(Color.white);
+        // setPreferredSize(new Dimension(650, 250));
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        setLayout(boxLayout);
         ArrayList<Movie> movies = db.getMovies();
-        setLayout(new GridLayout(movies.size(), 1));
         for (Movie movie : movies) {
             add(new MovieDetail(movie));
         }

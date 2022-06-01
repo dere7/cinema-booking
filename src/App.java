@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class App extends JFrame {
     public DB db;
+
     public App() {
         db = new DB();
         setLocation(30, 30);
@@ -18,11 +18,14 @@ public class App extends JFrame {
         setTitle("Black Lion Cinema");
         JTabbedPane tabbedPane = new JTabbedPane();
         JPanel movies = new MoviesList(db);
+        JScrollPane scrollPane = new JScrollPane(movies, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         JPanel newMovie = new NewMovie(db);
-        tabbedPane.addTab("List of Movies", movies);
+        tabbedPane.addTab("List of Movies", scrollPane);
         tabbedPane.addTab("Add Movie", newMovie);
+
         add(tabbedPane);
+        // pack();
         setVisible(true);
     }
-
 }

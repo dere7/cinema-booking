@@ -27,7 +27,7 @@ CREATE TABLE movie (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     rating FLOAT NOT NULL,
-    genre VARCHAR(80) UNIQUE NOT NULL,
+    genre VARCHAR(80) NOT NULL,
     story_line TEXT NOT NULL,
     time TIMESTAMP NOT NULL,
     cover_pic VARCHAR(255),
