@@ -2,8 +2,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DB {
-    public Connection conn = null;
-    public Statement stmt = null;
+    public Connection conn;
+    public Statement stmt;
 
     public DB() {
         try {
@@ -44,17 +44,18 @@ public class DB {
             mv = new Movie(
                     rs.getString("title"), rs.getString("genre"), rs.getString("story_line"),
                     rs.getString("cover_pic"), rs.getFloat("rating"), rs.getFloat("price"),
-                    rs.getTime("time").toLocaleString());
+                    rs.getTime("time").toString());
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return mv;
     }
 
-    public  void addMovie(Movie mv) {
+    public void addMovie(Movie mv) {
         try {
             PreparedStatement stmt;
-            stmt = conn.prepareStatement("INSERT INTO movie (title, genre, story_line, cover_pic, rating, price, time) VALUES (?,?,?,?,?,?,?)");
+            stmt = conn.prepareStatement(
+                    "INSERT INTO movie (title, genre, story_line, cover_pic, rating, price, time) VALUES (?,?,?,?,?,?,?)");
             stmt.setString(1, mv.title);
             stmt.setString(2, mv.genre);
             stmt.setString(3, mv.storyline);
